@@ -10,7 +10,8 @@ def inicio():
 def listar_series():
     series = db.session.query(Serie).all()
     serie_em_json = [ x.json() for x in series ]
-    # fornecer a lista de pessoas em formato json
-    return jsonify(serie_em_json)
+    resposta = jsonify(serie_em_json)
+    resposta.headers.add("Access-Control-Allow-Origin", "*")
+    return resposta
 
 app.run(debug=True)

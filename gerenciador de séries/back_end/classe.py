@@ -15,7 +15,7 @@ class Serie(db.Model):
             self.status + ", " + str(self.classificacao_indicativa)
 
     def json(self):
-        return json.dumps({
+        return ({
             "id": self.id,
             "nome": self.nome,
             "número de temporadas": self.temporada,

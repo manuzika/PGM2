@@ -10,7 +10,7 @@ class Serie(db.Model):
     classificacao_indicativa = db.Column(db.Integer)
 
     def __str__(self):
-        return str(self.id)+") " + self.nome + ", " +\
+        return str(self.id)+", " + self.nome + ", " +\
             str(self.temporada) + ", " + self.genero + ", " +\
             self.status + ", " + str(self.classificacao_indicativa)
 

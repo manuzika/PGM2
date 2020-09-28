@@ -14,4 +14,17 @@ def listar_series():
     resposta.headers.add("Access-Control-Allow-Origin", "*")
     return resposta
 
+@app.route("/incluir_serie", methods=['post'])
+def incluir_serie():
+    resposta = jsonify({"resultado": "ok", "detalhes": "ok"})
+    dados = request.get_json()
+    try:
+        nova = Serie(**dados)
+        db.session.add(nova)
+        db.session.commit()
+    except Exception as e: 
+        resposta = jsonify({"resultado":"erro", "detalhes":str(e)})
+    resposta.headers.add("Access-Control-Allow-Origin", "*")
+    return resposta
+
 app.run(debug=True)

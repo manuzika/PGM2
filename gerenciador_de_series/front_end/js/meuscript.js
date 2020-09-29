@@ -42,12 +42,12 @@ $(function() {
     });
 
     $(document).on("click", "#btnIncluirSerie", function validarform() {
-        if(document.getElementById("campoNome").value.length < 5) or (document.getElementById("campoTemporada").value.length < 1) or 
-        (document.getElementById("campoGenero").value.length < 5) or (document.getElementById("campoStatus").value.length < 9) or
-        (document.getElementById("campoClassificacaoIndicativa").value.length < 1) {
+        if ((document.getElementById("campoNome").value.length < 3) || (document.getElementById("campoTemporada").value.length < 1) || 
+        (document.getElementById("campoGenero").value.length < 5) || (document.getElementById("campoStatus").value.length < 9) ||
+        (document.getElementById("campoClassificacaoIndicativa").value.length < 1)) {
             alert('Por favor, preencha todos os campos');
         } 
-        else: {
+        else {
             nome = $("#campoNome").val();
             temporada = $("#campoTemporada").val();
             genero = $("#campoGenero").val();
@@ -62,16 +62,16 @@ $(function() {
                 data: dados,
                 success: serieIncluida,
                 error: erroAoIncluir
-            }
-    });
+            });
+        }
         function serieIncluida (retorno) {
             if (retorno.resultado == "ok") {
                 alert("Série incluída com sucesso!");
-                $("#campoNome").val();
-                $("#campoTemporada").val();
-                $("#campoGenero").val();
-                $("#campoStatus").val();
-                $("#campoClassificacaoIndicativa").val();
+                $("#campoNome").val("");
+                $("#campoTemporada").val("");
+                $("#campoGenero").val("");
+                $("#campoStatus").val("");
+                $("#campoClassificacaoIndicativa").val("");
             } 
             else {
                 alert(retorno.resultado + ":" + retorno.detalhes);

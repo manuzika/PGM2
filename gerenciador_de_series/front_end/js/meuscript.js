@@ -22,7 +22,7 @@ $(function() {
                 '<td>' + resposta[i].status + '</td>' + 
                 '<td>' + resposta[i].classificacao_indicativa + '</td>' + 
                 '<td><a href=# id="excluir_' + series[i].id + '" ' + 
-                'class="excluir_pessoa"><img src="imagens/delete.png" ' +
+                'class="excluir_serie"><img src="imagens/delete.png" ' +
                 'alt="Excluir serie" title="Excluir serie"></a>' + '</td>' + 
                 '</tr>';
                 $('#corpoTabelaSeries').append(lin);

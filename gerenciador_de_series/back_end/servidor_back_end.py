@@ -27,4 +27,15 @@ def incluir_serie():
     resposta.headers.add("Access-Control-Allow-Origin", "*")
     return resposta
 
+@app.route("/excluir_serie/<int:serie_id>", methods=["delete"])
+def excluir_serie(serie_id):
+    resposta = jsonify({"resultado": "ok", "detalhes": "ok"})
+    try:
+        Serie.query.filter(Serie.id == serie_id).delete()
+        db.session.commit()
+    except Exception as e:
+        resposta = jsonify({"resultado": "erro", "detalhes": str(e)})
+    resposta.headers.add("Access-Control-Allow-Origin", "*")
+    return resposta
+
 app.run(debug=True)

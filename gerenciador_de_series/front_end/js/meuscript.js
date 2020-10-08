@@ -15,12 +15,15 @@ $(function() {
             $('#corpoTabelaSeries').empty();
             mostrar_conteudo('TabelaSeries');
             for (var i in resposta) {
-                lin = '<tr>' +
+                lin = '<tr id="linha_' + series[i].id + ' ">' +
                 '<td>' + resposta[i].nome + '</td>' + 
                 '<td>' + resposta[i].temporada + '</td>' + 
                 '<td>' + resposta[i].genero + '</td>' + 
                 '<td>' + resposta[i].status + '</td>' + 
                 '<td>' + resposta[i].classificacao_indicativa + '</td>' + 
+                '<td><a href=# id="excluir_' + series[i].id + '" ' + 
+                'class="excluir_pessoa"><img src="imagens/delete.png" ' +
+                'alt="Excluir serie" title="Excluir serie"></a>' + '</td>' + 
                 '</tr>';
                 $('#corpoTabelaSeries').append(lin);
             }
@@ -89,4 +92,29 @@ $(function() {
     });
 
     mostrar_conteudo("conteudoInicial");
+
+    $(document).on("click", ".excluir_serie", function() { 
+        var componente_clicado = $(this).attr('id'); 
+        var nome_icone = "excluir_"; 
+        var id_serie = componente_clicado.substring(nome_icone.length); 
+        $.ajax({ 
+            url: 'http://localhost:5000/excluir_serie/'+id_serie, 
+            type: 'delete',
+            dataType: 'json', 
+            success: serieExcluida,
+            error: erroAoExcluir 
+        });
+        function serieExcluida(retorno) {
+            if (retorno.resultado == "ok") {
+                $("#linha_" + id_serie).fadeOut(1000, function() {
+                    alert("Série removida com sucesso!");
+                });
+            } else {
+                alert(retorno.resultado + ":" + retorno.detalhes);
+            }
+        }
+        function erroAoExcluir(retorno) {
+            alert("Erro ao excluir dados, verifique o backend: ");
+        }
+    });
 });

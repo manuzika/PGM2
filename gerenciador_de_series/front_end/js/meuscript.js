@@ -15,15 +15,16 @@ $(function() {
             $('#corpoTabelaSeries').empty();
             mostrar_conteudo('TabelaSeries');
             for (var i in resposta) {
-                lin = '<tr id="linha_' + series[i].id + ' ">' +
+                lin = '<tr id="linha_'+resposta[i].id+'">' + 
                 '<td>' + resposta[i].nome + '</td>' + 
                 '<td>' + resposta[i].temporada + '</td>' + 
                 '<td>' + resposta[i].genero + '</td>' + 
                 '<td>' + resposta[i].status + '</td>' + 
                 '<td>' + resposta[i].classificacao_indicativa + '</td>' + 
-                '<td><a href=# id="excluir_' + series[i].id + '" ' + 
-                'class="excluir_serie"><img src="imagens/delete.png" ' +
-                'alt="Excluir serie" title="Excluir serie"></a>' + '</td>' + 
+                '<td><a href=# id="excluir_' + resposta[i].id + '" ' + 
+                  'class="excluir_serie"><img src="imagens/delete.png" '+
+                  'alt="Excluir série" title="Excluir série"></a>' + 
+                '</td>' + 
                 '</tr>';
                 $('#corpoTabelaSeries').append(lin);
             }

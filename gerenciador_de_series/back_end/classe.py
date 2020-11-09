@@ -20,18 +20,13 @@ class Produtora(db.Model):
             "ano": self.ano,
         })
 
-class Status(enum.Enum):
-    CANCELADA = 1
-    EM_PRODUCAO = 2
-    ENCERRADA = 3
-
 class Serie(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     nome = db.Column(db.String(254))
     temporada = db.Column(db.Integer)
     genero = db.Column(db.String(254))
-    status = db.Column(db.Enum(Status))
+    status = db.Column(db.String(254))
     classificacao_indicativa = db.Column(db.Integer)
     produtora_id = db.Column(db.Integer, db.ForeignKey(Produtora.id))
     produtora = db.relationship("Produtora")
@@ -63,17 +58,12 @@ class Serie(db.Model):
                 "produtora": self.produtora.json()
             })
 
-class Categoria(enum.Enum):
-    PROTAGONISTA: 1
-    COADJUVANTE: 2
-    SECUNDARIO: 3
-
 class Elenco(db.Model):
     
     id = db.Column(db.Integer, primary_key=True)
     nome = db.Column(db.String(254))
     personagem = db.Column(db.String(254))
-    categoria = db.Column(db.Enum(Categoria))
+    categoria = db.Column(db.String(254))
     serie_id = db.Column(db.Integer, db.ForeignKey(Serie.id), nullable=False)
     serie = db.relationship("Serie")
 

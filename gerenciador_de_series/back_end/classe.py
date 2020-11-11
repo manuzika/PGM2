@@ -1,7 +1,7 @@
 from config import *
 import enum
 
-class Produtora(db.Model):
+class Emissora(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     nome = db.Column(db.String(254))
@@ -28,17 +28,17 @@ class Serie(db.Model):
     genero = db.Column(db.String(254))
     status = db.Column(db.String(254))
     classificacao_indicativa = db.Column(db.Integer)
-    produtora_id = db.Column(db.Integer, db.ForeignKey(Produtora.id))
-    produtora = db.relationship("Produtora")
+    emissora_id = db.Column(db.Integer, db.ForeignKey(Emissora.id))
+    emissora = db.relationship("Emissora")
 
     def __str__(self):
         s = f"Série {self.nome}"
-        if self.produtora_id != None:
-            s += f"produzida por {self.nome} localizada em {self.pais}"
+        if self.emissora_id != None:
+            s += f"exibida originalmente por {self.nome} localizada em {self.pais}"
             return s
 
     def json(self):
-        if self.produtora_id is None:
+        if self.emissora_id is None:
             return ({
                 "id": self.id,
                 "nome": self.nome,
@@ -55,7 +55,7 @@ class Serie(db.Model):
                 "genero": self.genero,
                 "status": self.status,
                 "classificacao_indicativa": self.classificacao_indicativa,
-                "produtora": self.produtora.json()
+                "emissora": self.emissora.json()
             })
 
 class Elenco(db.Model):

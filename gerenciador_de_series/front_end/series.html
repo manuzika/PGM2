@@ -33,7 +33,18 @@
                     <span class="navbar-text">YourFlix - Cadastro de Séries</span>
                     <a class="nav-item nav-link" href="#" id="linkInicio">Início
                         <span class="sr-only">(current)</span></a>
-                    <a class="nav-item nav-link" href="#" id="linkListarSeries">Listar</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" 
+                        id="navbarDropdownMenuLink" data-toggle="dropdown" 
+                        aria-haspopup="true" aria-expanded="false">
+                          Listar
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                          <a class="dropdown-item" href="#" id="linkListarEmissoras">Emissoras</a>
+                          <a class="dropdown-item" href="#" id="linkListarSeries">Séries</a> 
+                          <a class="dropdown-item" href="#" id="linkListarElencos">Elencos</a>
+                        </div>
+                    </li>
                     <a class="nav-item nav-link" data-toggle="modal" 
                         data-target="#modalIncluirSerie" href="#" data-toggle="modal" data-target="#ExemploModalCentralizado">Incluir</a>
                 </div>
@@ -48,7 +59,7 @@
 
         <div id="corpoDaPagina">
 
-            <div id="conteudoInicial" class="invisible">
+            <div id="conteudoInicial">
                 Bem vindo ao cadastro de séries.
             </div>
 
@@ -90,6 +101,11 @@
                                     <input type="text" class="form-control" id="campoClassificacaoIndicativa"
                                         aria-describedby="classificacaoindicativaHelp" placeholder="Informe a classificação indicativa da série">
                                 </div>
+                                <div class="form-group">
+                                    <label for="campoIdEmissora">Id Emissora</label>
+                                    <input type="text" class="form-control" id="campoIdEmissora"
+                                        aria-describedby="idemissoraHelp" placeholder="Informe o id da emissora">
+                                </div>
                             </form>
                         </div>
 
@@ -101,20 +117,52 @@
                 </div>
             </div>
 
-            <table class="table invisible table-striped table-hover" id="TabelaSeries">
-                <thead>
-                    <tr>
-                        <th scope="col">Nome</th>
-                        <th scope="col">Temporadas</th>
-                        <th scope="col">Gênero</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Classificação indicativa</th>
-                        <th scope="col">Excluir</th>
-                    </tr>
-                </thead>
-                <tbody id="corpoTabelaSeries">
-                </tbody>
-            </table>
+            <div class="container" id="ListarEmissoras">
+                <table class="table table-striped table-hover" id="TabelaEmissoras">
+                    <thead>
+                        <tr>
+                            <th scope="col">Nome</th>
+                            <th scope="col">País</th>
+                            <th scope="col">Ano</th>
+                        </tr>
+                    </thead>
+                    <tbody id="corpoTabelaEmissoras">
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="container" id="ListarSeries">
+                <table class="table table-striped table-hover" id="TabelaSeries">
+                    <thead>
+                        <tr>
+                            <th scope="col">Nome</th>
+                            <th scope="col">Temporadas</th>
+                            <th scope="col">Gênero</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Classificação indicativa</th>
+                            <th scope="col">Emissora</th>
+                            <th scope="col">Excluir</th>
+                        </tr>
+                    </thead>
+                    <tbody id="corpoTabelaSeries">
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="container" id="ListarElencos">
+                <table class="table table-striped table-hover" id="TabelaElencos">
+                    <thead>
+                        <tr>
+                            <th scope="col">Ator/atriz</th>
+                            <th scope="col">Personagem</th>
+                            <th scope="col">Categoria</th>
+                            <th scope="col">Série</th>
+                        </tr>
+                    </thead>
+                    <tbody id="corpoTabelaElencos">
+                    </tbody>
+                </table>
+            </div>
 
         </div>
     </div>

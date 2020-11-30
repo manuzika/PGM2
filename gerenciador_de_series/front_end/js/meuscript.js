@@ -1,8 +1,40 @@
 $(function() {
+
+    function exibir_emissoras() {
+        $.ajax({
+            url: 'http://localhost:5000/listar_emissora',
+            method: 'GET',
+            dataType: 'json',
+            success: listar,
+            error: function() {
+                alert("erro ao ler dados, verifique o backend");
+            }
+        });    
+        function listar (resposta) {
+            $('#corpoTabelaEmissoras').empty();
+            mostrar_conteudo('ListarEmissoras');
+            for (var i in resposta) {
+                lin = '<tr id="linha_'+resposta[i].id+'">' + 
+                '<td>' + resposta[i].nome + '</td>' + 
+                '<td>' + resposta[i].pais + '</td>' + 
+                '<td>' + resposta[i].ano + '</td>' + 
+                '<td><a href=# id="excluir_' + resposta[i].id + '" ' + 
+                  'class="excluir_emissora"><img src="imagens/delete.png" '+
+                  'alt="Excluir emissora" title="Excluir emissora"></a>' + 
+                '</td>' + 
+                '</tr>';
+                $('#corpoTabelaEmissoras').append(lin);
+            }
+        }
+    }
+    
+    $(document).on("click", "#linkListarEmissoras", function() {
+        exibir_emissoras();
+    });
     
     function exibir_series() {
         $.ajax({
-            url: 'http://localhost:5000/listar_series',
+            url: 'http://localhost:5000/listar_serie',
             method: 'GET',
             dataType: 'json',
             success: listar,
@@ -13,7 +45,7 @@ $(function() {
 
         function listar (resposta) {
             $('#corpoTabelaSeries').empty();
-            mostrar_conteudo('TabelaSeries');
+            mostrar_conteudo('ListarSeries');
             for (var i in resposta) {
                 lin = '<tr id="linha_'+resposta[i].id+'">' + 
                 '<td>' + resposta[i].nome + '</td>' + 
@@ -21,6 +53,7 @@ $(function() {
                 '<td>' + resposta[i].genero + '</td>' + 
                 '<td>' + resposta[i].status + '</td>' + 
                 '<td>' + resposta[i].classificacao_indicativa + '</td>' + 
+                '<td>' + resposta[i].emissora.nome + '</td>' + 
                 '<td><a href=# id="excluir_' + resposta[i].id + '" ' + 
                   'class="excluir_serie"><img src="imagens/delete.png" '+
                   'alt="Excluir série" title="Excluir série"></a>' + 
@@ -32,9 +65,11 @@ $(function() {
     }
 
     function mostrar_conteudo(identificador) {
-        $("#TabelaSeries").addClass('invisible');
-        $("#conteudoInicial").addClass('invisible');
-        $("#"+identificador).removeClass('invisible');      
+        $("#ListarSeries").addClass('d-none');
+        $("#conteudoInicial").addClass('d-none');
+        $("#ListarElencos").addClass('d-none');
+        $("#ListarEmissoras").addClass('d-none')
+        $("#"+identificador).removeClass('d-none');      
     }
 
     $(document).on("click", "#linkListarSeries", function() {
@@ -87,7 +122,7 @@ $(function() {
     });
 
     $('#modalIncluirSerie').on('hide.bs.modal', function (e) {
-        if (! $("#TabelaSeries").hasClass('invisible')) {
+        if (! $("#ListarSeries").hasClass('d-none')) {
             exibir_series();
         }
     });
@@ -118,4 +153,38 @@ $(function() {
             alert("Erro ao excluir dados, verifique o backend: ");
         }
     });
+
+    function exibir_elencos() {
+        $.ajax({
+            url: 'http://localhost:5000/listar_elenco',
+            method: 'GET',
+            dataType: 'json',
+            success: listar,
+            error: function() {
+                alert("erro ao ler dados, verifique o backend");
+            }
+        });    
+        function listar (resposta) {
+            $('#corpoTabelaElencos').empty();
+            mostrar_conteudo('ListarElencos');
+            for (var i in resposta) {
+                lin = '<tr id="linha_'+resposta[i].id+'">' + 
+                '<td>' + resposta[i].nome + '</td>' + 
+                '<td>' + resposta[i].personagem + '</td>' + 
+                '<td>' + resposta[i].categoria + '</td>' + 
+                '<td>' + resposta[i].serie.nome + '</td>' + 
+                '<td><a href=# id="excluir_' + resposta[i].id + '" ' + 
+                  'class="excluir_elenco"><img src="imagens/delete.png" '+
+                  'alt="Excluir ator/atriz" title="Excluir ator/atriz"></a>' + 
+                '</td>' + 
+                '</tr>';
+                $('#corpoTabelaElencos').append(lin);
+            }
+        }
+    }
+    
+    $(document).on("click", "#linkListarElencos", function() {
+        exibir_elencos();
+    });
+
 });

@@ -85,7 +85,6 @@ $(function() {
             error: function(problema) {
                 alert("erro ao ler dados, verifique o backend");
             }
-
         });
 
         function carregar(dados) {
@@ -97,7 +96,6 @@ $(function() {
             }
         }
     }
-}
 
     $(document).on("click", "#linkInicio", function() {
         mostrar_conteudo("conteudoInicial");

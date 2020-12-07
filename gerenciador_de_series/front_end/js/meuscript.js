@@ -2,7 +2,7 @@ $(function() {
 
     function exibir_emissoras() {
         $.ajax({
-            url: 'http://localhost:5000/listar_emissora',
+            url: 'http://localhost:5000/listar/Emissora',
             method: 'GET',
             dataType: 'json',
             success: listar,
@@ -34,7 +34,7 @@ $(function() {
     
     function exibir_series() {
         $.ajax({
-            url: 'http://localhost:5000/listar_serie',
+            url: 'http://localhost:5000/listar/Serie',
             method: 'GET',
             dataType: 'json',
             success: listar,
@@ -76,6 +76,29 @@ $(function() {
         exibir_series();
     });
 
+    function carregarCombo(combo_id, nome_classe) {
+        $.ajax({
+            url: 'http://localhost:5000/listar/'+nome_classe,
+            method: 'GET',
+            dataType: 'json',
+            success: carregar,
+            error: function(problema) {
+                alert("erro ao ler dados, verifique o backend");
+            }
+
+        });
+
+        function carregar(dados) {
+            $('#'+combo_id).empty();
+            for (var i in dados) {
+                $('#'+combo_id).append(
+                    $('<option></option>').attr("value",
+                        dados[i].id).text(dados[i].nome));
+            }
+        }
+    }
+}
+
     $(document).on("click", "#linkInicio", function() {
         mostrar_conteudo("conteudoInicial");
     });
@@ -92,7 +115,8 @@ $(function() {
             genero = $("#campoGenero").val();
             status = $("#campoStatus").val();
             classificacao_indicativa = $("#campoClassificacaoIndicativa").val();
-            var dados = JSON.stringify({ nome: nome, temporada: temporada, genero: genero, status: status, classificacao_indicativa: classificacao_indicativa});
+            emissora_id = $("#campoEmissoraId").val();
+            var dados = JSON.stringify({ nome: nome, temporada: temporada, genero: genero, status: status, classificacao_indicativa: classificacao_indicativa, emissora_id: emissora_id});
             $.ajax({
                 url: 'http://localhost:5000/incluir_serie',
                 type: 'POST',
@@ -111,6 +135,7 @@ $(function() {
                 $("#campoGenero").val("");
                 $("#campoStatus").val("");
                 $("#campoClassificacaoIndicativa").val("");
+                $("#campoEmissoraId").val("")
             } 
             else {
                 alert(retorno.resultado + ":" + retorno.detalhes);
@@ -120,10 +145,9 @@ $(function() {
             alert("ERRO: "+retorno.resultado + ":" + retorno.detalhes);
         }
     });
-
-    $('#modalIncluirSerie').on('hide.bs.modal', function (e) {
-        if (! $("#ListarSeries").hasClass('d-none')) {
-            exibir_series();
+    
+    $('#modalIncluirSerie').on('show.bs.modal', function (e) {
+        carregarCombo("campoEmissoraId", "Emissora");
         }
     });
 
@@ -156,7 +180,7 @@ $(function() {
 
     function exibir_elencos() {
         $.ajax({
-            url: 'http://localhost:5000/listar_elenco',
+            url: 'http://localhost:5000/listar/Elenco',
             method: 'GET',
             dataType: 'json',
             success: listar,

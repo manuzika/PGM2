@@ -102,9 +102,9 @@
                                         aria-describedby="classificacaoindicativaHelp" placeholder="Informe a classificação indicativa da série">
                                 </div>
                                 <div class="form-group">
-                                    <label for="campoIdEmissora">Id Emissora</label>
-                                    <input type="text" class="form-control" id="campoIdEmissora"
-                                        aria-describedby="idemissoraHelp" placeholder="Informe o id da emissora">
+                                    <label for="campoIdEmissora">Emissora</label>
+                                    <select class="form-control" id="campoEmissoraId" aria-describedby="emissoraidHelp" placeholder="Id da emissora"></select>
+                                    <small id="emissoraidHelp" class="form-text text-muted">(Selecione a emissora oficial da série)</small>
                                 </div>
                             </form>
                         </div>
@@ -124,6 +124,7 @@
                             <th scope="col">Nome</th>
                             <th scope="col">País</th>
                             <th scope="col">Ano</th>
+                            <th scope="col">Excluir</th>
                         </tr>
                     </thead>
                     <tbody id="corpoTabelaEmissoras">
@@ -157,6 +158,7 @@
                             <th scope="col">Personagem</th>
                             <th scope="col">Categoria</th>
                             <th scope="col">Série</th>
+                            <th scope="col">Excluir</th>
                         </tr>
                     </thead>
                     <tbody id="corpoTabelaElencos">

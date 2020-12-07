@@ -4,7 +4,7 @@ from classe import Emissora, Serie, Elenco
 @app.route("/")
 def inicio():
     return 'Sistema para cadastrar séries. '+\
-        '<a href="/listar_serie">Listar Séries</a>'
+        '<a href="/listar/Serie">Listar Séries</a>'
 
 @app.route("/listar/<string:classe>")
 def listar(classe):

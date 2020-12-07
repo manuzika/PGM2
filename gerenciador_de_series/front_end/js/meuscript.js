@@ -146,7 +146,6 @@ $(function() {
     
     $('#modalIncluirSerie').on('show.bs.modal', function (e) {
         carregarCombo("campoEmissoraId", "Emissora");
-        }
     });
 
     mostrar_conteudo("conteudoInicial");

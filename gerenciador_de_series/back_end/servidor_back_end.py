@@ -20,6 +20,30 @@ def listar(classe):
     resposta.headers.add("Access-Control-Allow-Origin", "*")
     return resposta
 
+@app.route("/incluir_emissora", methods=['post'])
+def incluir_emissora():
+    resposta = jsonify({"resultado": "ok", "detalhes": "ok"})
+    dados = request.get_json()
+    try:
+        nova = Emissora(**dados)
+        db.session.add(nova)
+        db.session.commit()
+    except Exception as e: 
+        resposta = jsonify({"resultado":"erro", "detalhes":str(e)})
+    resposta.headers.add("Access-Control-Allow-Origin", "*")
+    return resposta
+
+@app.route("/excluir_emissora/<int:emissora_id>", methods=["delete"])
+def excluir_emissora(emissora_id):
+    resposta = jsonify({"resultado": "ok", "detalhes": "ok"})
+    try:
+        Emissora.query.filter(Emissora.id == emissora_id).delete()
+        db.session.commit()
+    except Exception as e:
+        resposta = jsonify({"resultado": "erro", "detalhes": str(e)})
+    resposta.headers.add("Access-Control-Allow-Origin", "*")
+    return resposta
+
 @app.route("/incluir_serie", methods=['post'])
 def incluir_serie():
     resposta = jsonify({"resultado": "ok", "detalhes": "ok"})
@@ -38,6 +62,30 @@ def excluir_serie(serie_id):
     resposta = jsonify({"resultado": "ok", "detalhes": "ok"})
     try:
         Serie.query.filter(Serie.id == serie_id).delete()
+        db.session.commit()
+    except Exception as e:
+        resposta = jsonify({"resultado": "erro", "detalhes": str(e)})
+    resposta.headers.add("Access-Control-Allow-Origin", "*")
+    return resposta
+
+@app.route("/incluir_elenco", methods=['post'])
+def incluir_elenco():
+    resposta = jsonify({"resultado": "ok", "detalhes": "ok"})
+    dados = request.get_json()
+    try:
+        nova = Elenco(**dados)
+        db.session.add(nova)
+        db.session.commit()
+    except Exception as e: 
+        resposta = jsonify({"resultado":"erro", "detalhes":str(e)})
+    resposta.headers.add("Access-Control-Allow-Origin", "*")
+    return resposta
+
+@app.route("/excluir_elenco/<int:elenco_id>", methods=["delete"])
+def excluir_elenco(elenco_id):
+    resposta = jsonify({"resultado": "ok", "detalhes": "ok"})
+    try:
+        Elenco.query.filter(Elenco.id == elenco_id).delete()
         db.session.commit()
     except Exception as e:
         resposta = jsonify({"resultado": "erro", "detalhes": str(e)})

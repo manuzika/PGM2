@@ -46,7 +46,11 @@
                         </div>
                     </li>
                     <a class="nav-item nav-link" data-toggle="modal" 
-                        data-target="#modalIncluirSerie" href="#" data-toggle="modal" data-target="#ExemploModalCentralizado">Incluir</a>
+                        data-target="#modalIncluirEmissora" href="#" data-toggle="modal" data-target="#ExemploModalCentralizado">Incluir Emissora</a>
+                    <a class="nav-item nav-link" data-toggle="modal" 
+                        data-target="#modalIncluirSerie" href="#" data-toggle="modal" data-target="#ExemploModalCentralizado">Incluir Série</a>
+                    <a class="nav-item nav-link" data-toggle="modal" 
+                        data-target="#modalIncluirElenco" href="#" data-toggle="modal" data-target="#ExemploModalCentralizado">Incluir Elenco</a>
                 </div>
             </div>
 
@@ -63,6 +67,44 @@
                 Bem vindo ao cadastro de séries.
             </div>
 
+            <div class="modal fade" id="modalIncluirEmissora" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Incluir emissora</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="campoNome">Nome</label>
+                                    <input type="text" class="form-control" id="campoNome"
+                                        aria-describedby="nomeHelp" placeholder="Informe o nome da emissora">
+                                </div>
+                                <div class="form-group">
+                                    <label for="campoPais">Pais</label>
+                                    <input type="text" class="form-control" id="campoPais"
+                                        aria-describedby="paisHelp" placeholder="Informe o país sede da emissora">
+                                </div>
+                                <div class="form-group">
+                                    <label for="campoAno">Ano</label>
+                                    <input type="text" class="form-control" id="campoAno"
+                                        aria-describedby="anoHelp" placeholder="Informe o ano de fundação da emissora">
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                            <button id="btnIncluirEmissora" type="button" class="btn btn-primary">Incluir</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="modal fade" id="modalIncluirSerie" tabindex="-1" role="dialog"
                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -76,9 +118,9 @@
                         <div class="modal-body">
                             <form>
                                 <div class="form-group">
-                                    <label for="campoNome">Nome</label>
-                                    <input type="text" class="form-control" id="campoNome"
-                                        aria-describedby="nomeHelp" placeholder="Informe o nome da série">
+                                    <label for="campoNome2">Nome</label>
+                                    <input type="text" class="form-control" id="campoNome2"
+                                        aria-describedby="nome2Help" placeholder="Informe o nome da série">
                                 </div>
                                 <div class="form-group">
                                     <label for="campoTemporada">Temporadas</label>
@@ -112,6 +154,50 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                             <button id="btnIncluirSerie" type="button" class="btn btn-primary">Incluir</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="modalIncluirElenco" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Incluir elenco</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="campoNome3">Nome</label>
+                                    <input type="text" class="form-control" id="campoNome3"
+                                        aria-describedby="nome3Help" placeholder="Informe o nome do(a) ator/atriz">
+                                </div>
+                                <div class="form-group">
+                                    <label for="campoPersonagem">Personagem</label>
+                                    <input type="text" class="form-control" id="campoPersonagem"
+                                        aria-describedby="personagemHelp" placeholder="Informe o nome do personagem">
+                                </div>
+                                <div class="form-group">
+                                    <label for="campoCategoria">Categoria</label>
+                                    <input type="text" class="form-control" id="campoCategoria"
+                                        aria-describedby="categoriaHelp" placeholder="Informe a categoria do personagem">
+                                    <small id="categoriaHelp" class="form-text text-muted">(ex.: protagonista, coadjuvante ou secundário)</small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="campoIdSerie">Série</label>
+                                    <select class="form-control" id="campoSerieId" aria-describedby="serieidHelp" placeholder="Id da série"></select>
+                                    <small id="serieidHelp" class="form-text text-muted">(Selecione a série do personagem)</small>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                            <button id="btnIncluirElenco" type="button" class="btn btn-primary">Incluir</button>
                         </div>
                     </div>
                 </div>

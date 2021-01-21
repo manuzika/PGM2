@@ -1,8 +1,9 @@
 $(function() {
 
+    var urlx = 'http://manoelaroepcke.pythonanywhere.com/';
     function exibir_emissoras() {
         $.ajax({
-            url: 'http://localhost:5000/listar/Emissora',
+            url: urlx + '/listar/Emissora',
             method: 'GET',
             dataType: 'json',
             success: listar,
@@ -39,7 +40,7 @@ $(function() {
             ano = $("#campoAno").val();
             var dados = JSON.stringify({ nome: nome, pais: pais, ano: ano});
             $.ajax({
-                url: 'http://localhost:5000/incluir_emissora',
+                url: urlx + '/incluir_emissora',
                 type: 'POST',
                 dataType: 'json',
                 contentType: 'application/json',
@@ -69,7 +70,7 @@ $(function() {
         var nome_icone = "excluir_"; 
         var id_emissora = componente_clicado.substring(nome_icone.length); 
         $.ajax({ 
-            url: 'http://localhost:5000/excluir_emissora/'+id_emissora, 
+            url: urlx + '/excluir_emissora/'+id_emissora, 
             type: 'delete',
             dataType: 'json', 
             success: emissoraExcluida,
@@ -95,7 +96,7 @@ $(function() {
     
     function exibir_series() {
         $.ajax({
-            url: 'http://localhost:5000/listar/Serie',
+            url: urlx + '/listar/Serie',
             method: 'GET',
             dataType: 'json',
             success: listar,
@@ -139,7 +140,7 @@ $(function() {
 
     function carregarCombo(combo_id, nome_classe) {
         $.ajax({
-            url: 'http://localhost:5000/listar/'+nome_classe,
+            url: urlx + '/listar/'+nome_classe,
             method: 'GET',
             dataType: 'json',
             success: carregar,
@@ -177,7 +178,7 @@ $(function() {
             emissora_id = $("#campoEmissoraId").val();
             var dados = JSON.stringify({ nome: nome, temporada: temporada, genero: genero, status: status, classificacao_indicativa: classificacao_indicativa, emissora_id: emissora_id});
             $.ajax({
-                url: 'http://localhost:5000/incluir_serie',
+                url: urlx + '/incluir_serie',
                 type: 'POST',
                 dataType: 'json',
                 contentType: 'application/json',
@@ -216,7 +217,7 @@ $(function() {
         var nome_icone = "excluir_"; 
         var id_serie = componente_clicado.substring(nome_icone.length); 
         $.ajax({ 
-            url: 'http://localhost:5000/excluir_serie/'+id_serie, 
+            url: urlx + '/excluir_serie/'+id_serie, 
             type: 'delete',
             dataType: 'json', 
             success: serieExcluida,
@@ -238,7 +239,7 @@ $(function() {
 
     function exibir_elencos() {
         $.ajax({
-            url: 'http://localhost:5000/listar/Elenco',
+            url: urlx + '/listar/Elenco',
             method: 'GET',
             dataType: 'json',
             success: listar,
@@ -281,7 +282,7 @@ $(function() {
             serie_id = $("#campoSerieId").val();
             var dados = JSON.stringify({ nome: nome, personagem: personagem, categoria: categoria, serie_id: serie_id});
             $.ajax({
-                url: 'http://localhost:5000/incluir_elenco',
+                url: urlx + '/incluir_elenco',
                 type: 'POST',
                 dataType: 'json',
                 contentType: 'application/json',
@@ -316,7 +317,7 @@ $(function() {
         var nome_icone = "excluir_"; 
         var id_elenco = componente_clicado.substring(nome_icone.length); 
         $.ajax({ 
-            url: 'http://localhost:5000/excluir_elenco/'+id_elenco, 
+            url: urlx + '/excluir_elenco/'+id_elenco, 
             type: 'delete',
             dataType: 'json', 
             success: elencoExcluida,
